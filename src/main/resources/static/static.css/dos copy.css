@@ -1,0 +1,22 @@
+.boton.dos::after {
+	content: "";
+	width: 100%;
+    /*para sacar la capa y poner el z-index en 1, porque el span 
+    está en dos entonces éste se verá por encima ponemos position absolute y en boton.span
+    position relative*/
+	position: absolute;
+	z-index: 1;
+	top: 0;
+    /*esto es para que la capa quede a la izq */
+	 left: calc(-100% - 80px); 
+    /*Para hacer la diagonal se usa este truco/*/
+    border-bottom: 80px solid #286cff;
+	border-right: 80px solid transparent;
+	transition: .4s ease-in-out all;
+	
+}
+
+.boton.dos:hover::after {
+	left: 0;
+}
+

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/img/flatico.png">
+    <link rel="stylesheet" href="static.css/style.css">
+    <link rel="stylesheet" href="static.css/dos.css">
+    <link rel="stylesheet" href="static.css/cuatro.css">
+    <!-- FUentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+        
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Scripts -->
+    <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+    <title>LibreryService</title>
+</head>
+<body>
+    <nav class="">
+        
+      <nav class="navbar navbar-expand-lg navar-primary bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/}">LibreryService</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto" >
+            <li class="nav-item active">
+              <a class="nav-link" th:href="@{/}">Inicio <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"th:href="@{/libros}">Libros</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/autores}">Autores</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/editoriales}">Editoriales</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contact">Contact</a>
+              </li>
+            
+          </ul>
+        </div>
+        </div>
+      </nav>
+      <br>
+        <div class="container" style="margin: 0; padding: 0; margin-top: 100px; width: 100%; margin-left: 200px;">
+            <div class="row">
+                <div class="col-log-6 col-md6 col-sm-6 container justify-content-center card" style="background-color: #286cff;">
+                    <h1 class="text-center" style="color: #fff;">Editar Autor</h1>
+                    <div class="card-body">
+                        <form th:action="@{/autores/{id}(id=${autor.id})}"  method="POST">
+                            <div class="form-group">
+                                <label style="color: #fff;">Nombre :</label>
+                                <input th:value="${autor.nombre}" type="text" name="nombre" class="form-control" placeholder="Digite el nombre del autor" required>
+                            </div>
+                            <br>                         
+                            <div class="box-footer">
+                                <button style="background-color: #286cff;" class="btn-primary mt-sm-1" ><span style="color: #fff;">Guardar</span> </button>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>

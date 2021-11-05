@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/img/flatico.png">
+    <link rel="stylesheet" href="static.css/style.css">
+    <link rel="stylesheet" href="static.css/dos.css">
+    <link rel="stylesheet" href="static.css/cuatro.css">
+    <!-- FUentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+        
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Scripts -->
+    <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+    <title>LibreryService</title>
+</head>
+<body>
+    <nav class="">
+        
+      <nav class="navbar navbar-expand-lg navar-primary bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">LibreryService</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto" >
+            <li class="nav-item active">
+              <a class="nav-link" href="@{/}">Inicio <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="@{/libros}">Libros</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="@{/autores}">Autores</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@{/editorial}">Editoriales</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contact">Contact</a>
+              </li>
+            
+          </ul>
+        </div>
+        </div>
+      </nav>
+      <br>
+        <div class="container" style="margin: 0; padding: 0; margin-top: 100px; width: 100%; margin-left: 200px;">
+            <div class="row">
+                <div class="col-log-6 col-md6 col-sm-6 container justify-content-center card" style="background-color: #286cff;">
+                    <h1 class="text-center" style="color: #fff;">Registro de Libro</h1>
+                    <div class="card-body">
+                        <form th:action="@{/libros/registro}" method="POST">
+                            <div class="form-group">
+                                <label style="color: #fff;">ISBN :</label>
+                                <input  type="text" name="isbn"  class="form-control" placeholder="Digite el isbn del libro" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label style="color: #fff;">Título :</label>
+                                <input  type="text" name="titulo"  class="form-control" placeholder="Digite el título del libro" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label style="color: #fff;">Autor :</label>
+                                <input type="text" name="nombreAutor"  class="form-control" placeholder="Digite el autor del libro" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label style="color: #fff;">Editorial :</label>
+                                <input  type="text" name="nombreEditorial"  class="form-control" placeholder="Digite la editorial del libro" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label style="color: #fff;">Año :</label>
+                                <input  type="numer" name="anio"  class="form-control" placeholder="Digite el año del libro" required>
+                            </div>
+                            <div class="form-group">
+                                <label style="color: #fff;">Cantidad :</label>
+                                <input  type="number" name="ejemplares"  class="form-control" placeholder="Digite la cantidad del libros" required>
+                            </div>
+                            <div class="form-group">
+                                <label style="color: #fff;">Cantidad de libros Prestados :</label>
+                                <input  type="number" name="ejemplaresPrestados"  class="form-control" placeholder="Digite la cantidad del libros prestados" required>
+                            </div>
+                            <div class="form-group">
+                                <label style="color: #fff;">Cantidad de libros Restantes :</label>
+                                <input  type="number" name="ejemplaresRestantes"  class="form-control" placeholder="Digite la cantidad del libros restantes" required>
+                            </div>
+                            
+                           
+                            <div class="box-footer">
+                                <button style="background-color: #286cff;" class="boton dos mt-sm-1" ><span style="color: #fff;">Guardar</span> </button>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>
