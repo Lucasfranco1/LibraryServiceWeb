@@ -51,46 +51,22 @@ public class LibroServicio {
             libro.setEjemplaresPrestados(ejemplaresPrestados);
             libro.setEjemplaresRestantes(ejemplaresRestantes);
             libro.setAlta(true);
-            //Autor autor = new Autor();
-            List<Autor>autores=aS.buscarAutorNombre(nombreAutor);
-            Autor autor=new Autor();
-            Editorial editorial=new Editorial();
-            if(autores==null){
-                aS.guardarAutor(nombreAutor);
+
+            Autor autor=aS.buscarAutorNombre(nombreAutor);
+      
+            if(autor==null){
+                aS.guardarAutor(libro.getAutor().getNombre());
             }else{
-                autor.setNombre(nombreAutor); 
+                libro.setAutor(autor); 
             }
               
-           
-//            autor = aS.buscarAutorNombre(nombreAutor);
-//            if (autor == null) {
-//                aS.guardarAutor();
-//            } else {
-//                autor.setAutor(autor);
-//            }
-//
-              List<Editorial>editoriales=eS.obtenerEditorialNombre(nombreEditorial);
-              if(editoriales==null){
-                  eS.guardarEditorial(nombreEditorial);
-              }else{
-                editorial.setNombre(nombreEditorial);  
-              }
-               
-//            Editorial editorial = eS.obtenerEditorialNombre(editorial_id);
-//            if (editorial == null) {
-//                eS.guardarEditorial(editorial_id);
-//            } else {
-//                libro.setEditorial(editorial);
-//            }
-            
-        
-      
-       // Editorial editorial = new Editorial();
-//        autor.setNombre(nombreAutor); 
-//        editorial.setNombre(nombreEditorial);
-        libro.setAutor(autor);
-        libro.setEditorial(editorial);
 
+              Editorial editorial=eS.obtenerEditorialNombre(nombreEditorial);
+              if(editorial==null){
+                  eS.guardarEditorial(libro.getEditorial().getNombre());
+              }else{
+                libro.setEditorial(editorial);  
+              }              
             libroRepositorio.save(libro);
         } catch (Exception e) {
             System.out.println(e.getMessage() + "Error al cargar libro");
@@ -113,16 +89,23 @@ public class LibroServicio {
     }
 
     @Transactional
-    public Libro actualizarLibro(Libro libro) throws ErrorServicio {
-
-        if (libro != null) {
-
-            return libroRepositorio.save(libro);
-
-        } else {
-            throw new ErrorServicio("El libro no puede ser nulo.");
-
+    public Libro actualizarLibro(String id, Long isbn, String titulo, String nombreAutor, String nombreEditorial, Integer anio, Integer ejemplares, Integer ejemplaresPrestados, Integer ejemplaresRestantes) throws ErrorServicio {
+        Optional<Libro> resp=libroRepositorio.findById(id);
+        if(resp.isPresent()){
+        Libro libro=resp.get();
+            libro.setTitulo(titulo);
+            libro.setIsbn(isbn);
+            libro.setEjemplares(ejemplares);
+            libro.setEjemplaresPrestados(ejemplaresPrestados);
+            libro.setEjemplaresRestantes(ejemplaresRestantes);
+            libro.setAnio(anio);
+           
+           return libroRepositorio.save(libro); 
+        }else{
+            throw new ErrorServicio("No existe un libro con el id solicitado.");
         }
+        
+        
     }
 
     @Transactional

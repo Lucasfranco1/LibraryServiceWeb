@@ -113,49 +113,18 @@ public class LibroController {
 
     }
 
-    @PostMapping("/libros/{id}")
-    public String actualizarLibros(@PathVariable String id, @ModelAttribute("libro") Libro libro, Model modelo) throws ErrorServicio {
+    @PostMapping("/libros/confirmar-edicion{id}{id}")
+    public String actualizarLibros(@PathVariable String id, ModelMap modelo,@RequestParam(required = false) Long isbn, @RequestParam(required = false) String titulo, @RequestParam(required = false) String nombreAutor,@RequestParam(required = false) String nombreEditorial, @RequestParam(required = false) Integer anio, @RequestParam (required = false) Integer ejemplares,
+            @RequestParam(required = false) Integer ejemplaresPrestados, @RequestParam(required = false) Integer ejemplaresRestantes ) throws ErrorServicio {
 
-        Libro E = lService.obtenerLibroPorId(id);
-
-        E.setId(id);
-        E.setIsbn(libro.getIsbn());
-        E.setTitulo(libro.getTitulo());
-        E.setAutor(libro.getAutor());
-        E.setEditorial(libro.getEditorial());
-        E.setAnio(libro.getAnio());
-        E.setEjemplares(libro.getEjemplares());
-        E.setEjemplaresPrestados(libro.getEjemplaresPrestados());
-        E.setEjemplaresRestantes(libro.getEjemplaresRestantes());
-
-        lService.actualizarLibro(libro);
-
-        return "redirect:/libros";
-
-    }
-
-    @GetMapping("libros/baja/{id}")
-    public String baja(@PathVariable String id) {
-
-        try {
-            lService.baja(id);
-            return "redirect:/libros/listar";
-        } catch (Exception e) {
-            return "redirect:/";
+        try{
+            lService.actualizarLibro(id,isbn,titulo,nombreAutor, nombreEditorial,anio,ejemplares,ejemplaresPrestados,ejemplaresRestantes);
+//            modelo.put("exito","Registro exitoso");
+            return "redirect:/libro/listar";
+        }catch(Exception e){
+            modelo.put("error", "Faltó algún dato me parece...");
+            return "form-libro";
         }
-
-    }
-
-    @GetMapping("libros/alta/{id}")
-    public String alta(@PathVariable String id) {
-
-        try {
-            lService.alta(id);
-            return "redirect:/libros/listar";
-        } catch (Exception e) {
-            return "redirect:/";
-        }
-
     }
 
     @GetMapping("libros/eliminar/{id}")

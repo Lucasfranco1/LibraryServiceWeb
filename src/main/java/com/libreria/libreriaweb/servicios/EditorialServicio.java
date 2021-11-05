@@ -40,7 +40,7 @@ public class EditorialServicio{
         }
 
     }
-    public List<Editorial> obtenerEditorialNombre(String nombre){
+    public Editorial obtenerEditorialNombre(String nombre){
         return editorialRepositorio.buscarPorNombre(nombre);
     }
 

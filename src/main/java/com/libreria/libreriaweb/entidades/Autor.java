@@ -43,7 +43,7 @@ public class Autor {
 //        ellibro.setAutor(this);
 //    }
     public Autor() {
-       
+       alta=true;
     }
     
     

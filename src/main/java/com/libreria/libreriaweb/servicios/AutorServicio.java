@@ -75,7 +75,7 @@ public class AutorServicio {
 
         }
     }
-    public List<Autor> buscarAutorNombre(String nombre){
+    public Autor buscarAutorNombre(String nombre){
 
         return autorRepositorio.buscarPorNombre(nombre);
     }
