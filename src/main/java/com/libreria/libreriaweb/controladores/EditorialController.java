@@ -41,7 +41,7 @@ public class EditorialController {
     @GetMapping("editoriales/listar")//cualquiera de esas rutas
     public String listarEditoriales(ModelMap modelo) throws ErrorServicio {
 
-        List<Editorial> todos = editorialService.listarAutores();
+        List<Editorial> todos = editorialService.listarEditoriales();
         modelo.addAttribute("editoriales", todos);
         return "editorial.html";
 

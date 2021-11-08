@@ -56,7 +56,7 @@
                 <div class="col-log-6 col-md6 col-sm-6 container justify-content-center card" style="background-color: #286cff;">
                     <h1 class="text-center" style="color: #fff;">Editar Libro</h1>
                     <div class="card-body">
-                        <form th:action="@{/libros/{id}(id=${libro.id})}" method="POST">
+                        <form th:action="@{/libros/confirmar-edicion{id}(id=${libro.id})}" method="POST">
                             <div class="form-group">
                                 <label style="color: #fff;">ISBN :</label>
                                 <input th:value="${libro.isbn}" type="text" name="isbn" class="form-control" placeholder="Digite el isbn" required>
@@ -65,14 +65,14 @@
                                 <label style="color: #fff;">TÍTULO :</label>
                                 <input th:value="${libro.titulo}" type="text" name="titulo" class="form-control" placeholder="Digite el nombre del titulo" required>
                             </div>
-<!--                            <div class="form-group">
+<!--                           <div class="form-group">
                                 <label style="color: #fff;">AUTOR :</label>
                                 <input  type="text" name="nombreAutor" class="form-control" placeholder="Digite el nombre del autor" required>
                             </div>
                             <div class="form-group">
                                 <label style="color: #fff;">EDITORIAL :</label>
                                 <input  type="text" name=nombreEditorial" class="form-control" placeholder="Digite el nombre de la editorial" required>
-                            </div>-->-->
+                            </div>-->
                             <div class="form-group">
                                 <label style="color: #fff;">AÑO :</label>
                                 <input th:value="${libro.anio}" type="text" name="anio" class="form-control" placeholder="Digite el año del libro" required>
@@ -91,7 +91,7 @@
                             </div>
                             <br>                         
                             <div class="box-footer">
-                                <button style="background-color: #286cff;" class="btn-primary mt-sm-1" ><span style="color: #fff;">Guardar</span> </button>
+                                <button  type="submit" style="background-color: #286cff;" class="btn-primary mt-sm-1" ><span style="color: #fff;">Guardar</span> </button>
                             </div>
                             
                         </form>

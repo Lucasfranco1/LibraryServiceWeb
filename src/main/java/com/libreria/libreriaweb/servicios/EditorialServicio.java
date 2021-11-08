@@ -20,7 +20,7 @@ public class EditorialServicio{
     
    
     @Transactional
-    public List<Editorial> listarAutores() throws ErrorServicio {
+    public List<Editorial> listarEditoriales() throws ErrorServicio {
 
         return editorialRepositorio.findAll(); //findAll()Para buscar todos 
     }

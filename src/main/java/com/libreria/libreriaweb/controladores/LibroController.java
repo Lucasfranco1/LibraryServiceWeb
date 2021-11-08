@@ -10,6 +10,7 @@ import com.libreria.libreriaweb.entidades.Editorial;
 import com.libreria.libreriaweb.entidades.Libro;
 import com.libreria.libreriaweb.exceptiones.ErrorServicio;
 import com.libreria.libreriaweb.servicios.AutorServicio;
+import com.libreria.libreriaweb.servicios.EditorialServicio;
 
 import com.libreria.libreriaweb.servicios.LibroServicio;
 import java.util.List;
@@ -37,6 +38,8 @@ public class LibroController {
     private LibroServicio lService;
     @Autowired
     private AutorServicio aService;
+    @Autowired
+    private EditorialServicio eService;
 
     @GetMapping("/libros")
     public String iraLibros() {
@@ -48,21 +51,19 @@ public class LibroController {
 
         List<Libro> todos = lService.listarLibros();
         modelo.addAttribute("libros", todos);
-//        List<Libro> todo = lService.ListarTodo();
-//        modelo.addAttribute("libros", todo);
         return "libro.html";
 
     }
-    @GetMapping("libros/todos-autores{l.autor.nombre}")//cualquiera de esas rutas
-    public String listarLibrosAutores(ModelMap modelo, @PathVariable String nombre) throws ErrorServicio {
-
-        List<Libro> todos = lService.ListarTodo(nombre);
-        modelo.addAttribute("libros", todos);
-//        List<Libro> todo = lService.ListarTodo();
-//        modelo.addAttribute("libros", todo);
-        return "libro.html";
-
-    }
+//    @GetMapping("libros/todos-autores{l.autor.nombre}")//cualquiera de esas rutas
+//    public String listarLibrosAutores(ModelMap modelo, @PathVariable String nombre) throws ErrorServicio {
+//
+//        List<Libro> todos = lService.ListarTodo(nombre);
+//        modelo.addAttribute("libros", todos);
+////        List<Libro> todo = lService.ListarTodo();
+////        modelo.addAttribute("libros", todo);
+//        return "libro.html";
+//
+//    }
 //
 //    @GetMapping("libros/todos")
 //    public String listarTodo(ModelMap modelo) {
@@ -79,6 +80,8 @@ public class LibroController {
         try {
             Libro libro = new Libro();
             modelo.addAttribute("libros", libro);
+            modelo.addAttribute("autores", aService.listarAutores());
+            modelo.addAttribute("editoriales", eService.listarEditoriales());
             return "form_libros.html";
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -113,14 +116,14 @@ public class LibroController {
 
     }
 
-    @PostMapping("/libros/confirmar-edicion{id}{id}")
-    public String actualizarLibros(@PathVariable String id, ModelMap modelo,@RequestParam(required = false) Long isbn, @RequestParam(required = false) String titulo, @RequestParam(required = false) String nombreAutor,@RequestParam(required = false) String nombreEditorial, @RequestParam(required = false) Integer anio, @RequestParam (required = false) Integer ejemplares,
+    @PostMapping("/libros/confirmar-edicion{id}")
+    public String actualizarLibros(@PathVariable String id, ModelMap modelo,@RequestParam(required = false) Long isbn, @RequestParam(required = false) String titulo, @RequestParam(required = false) Integer anio, @RequestParam (required = false) Integer ejemplares,
             @RequestParam(required = false) Integer ejemplaresPrestados, @RequestParam(required = false) Integer ejemplaresRestantes ) throws ErrorServicio {
 
         try{
-            lService.actualizarLibro(id,isbn,titulo,nombreAutor, nombreEditorial,anio,ejemplares,ejemplaresPrestados,ejemplaresRestantes);
+            lService.actualizarLibro(id,isbn,titulo,anio,ejemplares,ejemplaresPrestados,ejemplaresRestantes);
 //            modelo.put("exito","Registro exitoso");
-            return "redirect:/libro/listar";
+            return "redirect:/libros/listar";
         }catch(Exception e){
             modelo.put("error", "Faltó algún dato me parece...");
             return "form-libro";

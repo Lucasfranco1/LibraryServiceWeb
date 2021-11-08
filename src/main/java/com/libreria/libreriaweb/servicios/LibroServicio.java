@@ -89,7 +89,8 @@ public class LibroServicio {
     }
 
     @Transactional
-    public Libro actualizarLibro(String id, Long isbn, String titulo, String nombreAutor, String nombreEditorial, Integer anio, Integer ejemplares, Integer ejemplaresPrestados, Integer ejemplaresRestantes) throws ErrorServicio {
+    public Libro actualizarLibro(String id, Long isbn, String titulo, Integer anio, Integer ejemplares, Integer ejemplaresPrestados, Integer ejemplaresRestantes) throws ErrorServicio {
+        
         Optional<Libro> resp=libroRepositorio.findById(id);
         if(resp.isPresent()){
         Libro libro=resp.get();

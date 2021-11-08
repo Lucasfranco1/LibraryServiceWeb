@@ -24,7 +24,7 @@
         
       <nav class="navbar navbar-expand-lg navar-primary bg-white fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">LibreryService</a>
+            <a class="navbar-brand" href="@{/}">LibreryService</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -40,7 +40,7 @@
               <a class="nav-link" href="@{/autores}">Autores</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="@{/editorial}">Editoriales</a>
+                <a class="nav-link" href="@{/editoriales}">Editoriales</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#contact">Contact</a>
@@ -68,14 +68,24 @@
                             </div>
                             
                             <div class="form-group">
-                                <label style="color: #fff;">Autor :</label>
-                                <input type="text" name="nombreAutor"  class="form-control" placeholder="Digite el autor del libro" required>
+<!--                                <label style="color: #fff;">Autor :</label>-->
+                                <!--<input type="text" name="nombreAutor"  class="form-control" placeholder="Digite el autor del libro" required>-->
+                         <select th:value="${libro.autor.id}" class="form-control">
+			<option th:each="a : ${autores}" th:text="${a.nombre}" th:value="${a.id}"></option>
+                                </select>
                             </div>
-                            
                             <div class="form-group">
+                                <!--<label style="color: #fff;">Editorial :</label>-->
+                                <!--<input type="text" name="nombreAutor"  class="form-control" placeholder="Digite el autor del libro" required>-->
+                         <select th:value="${libro.editorial.id}" class="form-control">
+			<option th:each="e : ${editoriales}" th:text="${e.nombre}" th:value="${e.id}">
+			</option>
+                                </select>
+                            </div>
+<!--                            <div class="form-group">
                                 <label style="color: #fff;">Editorial :</label>
                                 <input  type="text" name="nombreEditorial"  class="form-control" placeholder="Digite la editorial del libro" required>
-                            </div>
+                            </div>-->
                             
                             <div class="form-group">
                                 <label style="color: #fff;">Año :</label>
