@@ -82,7 +82,7 @@ public class LibroController {
             modelo.addAttribute("libros", libro);
             modelo.addAttribute("autores", aService.listarAutores());
             modelo.addAttribute("editoriales", eService.listarEditoriales());
-            return "form_libros.html";
+          return "form_libros.html";
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return "index.html";
@@ -92,16 +92,29 @@ public class LibroController {
     
 
     @PostMapping("libros/registro")
-    public String guardarLibro(ModelMap modelo, @RequestParam(required = false) Long isbn, @RequestParam(required = false) String titulo, @RequestParam(required = false) String nombreAutor, @RequestParam(required = false) String nombreEditorial, @RequestParam(required = false) Integer anio, @RequestParam (required = false) Integer ejemplares,
+    public String guardarLibro(ModelMap modelo, @RequestParam(required = false) Long isbn, @RequestParam(required = false) String titulo, @RequestParam(required = false) String idAutor, @RequestParam(required = false) String idEditorial, @RequestParam(required = false) Integer anio, @RequestParam (required = false) Integer ejemplares,
             @RequestParam(required = false) Integer ejemplaresPrestados, @RequestParam(required = false) Integer ejemplaresRestantes) throws ErrorServicio {
         try {
 
-            lService.crearLibro(isbn, titulo, nombreAutor, nombreEditorial, anio, ejemplares, ejemplaresPrestados, ejemplaresRestantes);
+            lService.crearLibro(isbn, titulo, idAutor, idEditorial, anio, ejemplares, ejemplaresPrestados, ejemplaresRestantes);
             modelo.put("titulo", "LibreryService");
             modelo.put("descrip", "Tu libro fue registrado con éxito.");
             return "libroexito.html";
 
         } catch (Exception e) {
+            modelo.put("isbn", isbn);
+            modelo.put("titulo", titulo);
+            List<Autor>autores=aService.listarAutores();
+            modelo.put("autores", autores);
+            List<Editorial>editoriales=eService.listarEditoriales();
+            modelo.put("editoriales", editoriales);
+            modelo.put("año", anio);
+            modelo.put("ejemplares", ejemplares);
+            modelo.put("prestados", ejemplaresPrestados);
+            modelo.put("restantes", ejemplaresRestantes);
+            //muestro el error
+            modelo.put("error", "faltó algún dato");
+                    
             System.out.println(e.getMessage() + "Falló algo");
             return "redirect:/";
 

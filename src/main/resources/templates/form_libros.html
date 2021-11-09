@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/img/flatico.png">
-    <link rel="stylesheet" href="static.css/style.css">
-    <link rel="stylesheet" href="static.css/dos.css">
-    <link rel="stylesheet" href="static.css/cuatro.css">
+    <link rel="stylesheet" href="/static.css/style.css">
+    <link rel="stylesheet" href="/static.css/dos.css">
+    <link rel="stylesheet" href="/static.css/cuatro.css">
     <!-- FUentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,17 +70,21 @@
                             <div class="form-group">
 <!--                                <label style="color: #fff;">Autor :</label>-->
                                 <!--<input type="text" name="nombreAutor"  class="form-control" placeholder="Digite el autor del libro" required>-->
-                         <select th:value="${libro.autor.id}" class="form-control">
-			<option th:each="a : ${autores}" th:text="${a.nombre}" th:value="${a.id}"></option>
+                                <label style="color: #fff;">Autor :</label>
+                                <select  class="form-control" name="idAutor">
+			<option th:each="autor : ${autores}" th:value="${autor.id}" th:text="${autor.nombre}"></option>
                                 </select>
+                                <p style="color:#fff; font-size: 10px">Si no se encuentra el Autor ve a la pestaña "Autor" y cárgalo</p>
                             </div>
                             <div class="form-group">
                                 <!--<label style="color: #fff;">Editorial :</label>-->
                                 <!--<input type="text" name="nombreAutor"  class="form-control" placeholder="Digite el autor del libro" required>-->
-                         <select th:value="${libro.editorial.id}" class="form-control">
-			<option th:each="e : ${editoriales}" th:text="${e.nombre}" th:value="${e.id}">
+                         <label style="color: #fff;">Editorial :</label>
+                                <select class="form-control" name="idEditorial">
+			<option th:each="editorial : ${editoriales}" th:value="${editorial.id}" th:text="${editorial.nombre}">
 			</option>
                                 </select>
+                                <p style="color:#fff; font-size: 10px">Si no se encuentra la Editorial ve a la pestaña "Editorial" y cárgalo</p>
                             </div>
 <!--                            <div class="form-group">
                                 <label style="color: #fff;">Editorial :</label>

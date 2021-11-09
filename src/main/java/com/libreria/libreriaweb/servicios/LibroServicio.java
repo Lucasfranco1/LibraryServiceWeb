@@ -37,7 +37,7 @@ public class LibroServicio {
 //    }
 
     @Transactional
-    public void crearLibro(Long isbn, String titulo, String nombreAutor, String nombreEditorial, Integer anio, Integer ejemplares, Integer ejemplaresPrestados,
+    public void crearLibro(Long isbn, String titulo, String idAutor, String idEditorial, Integer anio, Integer ejemplares, Integer ejemplaresPrestados,
             Integer ejemplaresRestantes) throws ErrorServicio {
 
         try {
@@ -52,7 +52,7 @@ public class LibroServicio {
             libro.setEjemplaresRestantes(ejemplaresRestantes);
             libro.setAlta(true);
 
-            Autor autor=aS.buscarAutorNombre(nombreAutor);
+            Autor autor=aS.obtenerAutorPorId(idAutor);
       
             if(autor==null){
                 aS.guardarAutor(libro.getAutor().getNombre());
@@ -61,7 +61,7 @@ public class LibroServicio {
             }
               
 
-              Editorial editorial=eS.obtenerEditorialNombre(nombreEditorial);
+              Editorial editorial=eS.obtenerAutorPorId(idEditorial);
               if(editorial==null){
                   eS.guardarEditorial(libro.getEditorial().getNombre());
               }else{
@@ -211,5 +211,9 @@ public class LibroServicio {
 //            throw new ErrorServicio("El autor no existe en la base de dato.");
 //        }
 //        
+//    }
+//     public Libro buscarLibroNombre(String nombre){
+//
+//        return libroRepositorio.buscarPorNombre(nombre);
 //    }
 }
