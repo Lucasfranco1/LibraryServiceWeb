@@ -37,6 +37,7 @@ public class AutorServicio {
     public Autor guardarAutor(String nombre) throws ErrorServicio {
 
         try {
+            validar(nombre);
             Autor autor = new Autor();
             autor.setNombre(nombre);
             autor.setAlta(true);
@@ -108,6 +109,12 @@ public class AutorServicio {
         }else{
              throw new ErrorServicio("Error al eliminar autor");
          }
+    }
+    public void validar(String nombre) throws ErrorServicio{
+        Autor autor=autorRepositorio.buscarPorNombre(nombre);
+        if(autor!=null){
+            throw new ErrorServicio("Ya existe ese autor en la base de datos.");
+        }
     }
 
 }

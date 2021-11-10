@@ -2,6 +2,7 @@
 package com.libreria.libreriaweb.repositorios;
 
 
+import com.libreria.libreriaweb.entidades.Cliente;
 import com.libreria.libreriaweb.entidades.Libro;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,9 @@ public interface LibroRepositorio extends JpaRepository<Libro, String> {
 //    
    @Query("SELECT l FROM Libro l WHERE l.autor.nombre=: nombre")
     public List<Libro> buscarLibroPorNombre(@Param("nombre") String nombre);
+    
+    @Query("SELECT c FROM Libro c WHERE c.isbn= :isbn")
+    public Libro buscarporIsbn(@Param("isbn") Long isbn);
     
 //    @Query("SELECT a FROM Libro a WHERE a.nombre= :nombre")
 //    public Libro buscarPorNombre(@Param("nombre") String nombre);

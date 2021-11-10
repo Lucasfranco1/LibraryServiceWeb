@@ -29,6 +29,7 @@ public class EditorialServicio{
     public Editorial guardarEditorial(String nombre) throws ErrorServicio {
 
         try {
+            validar(nombre);
             Editorial editorial = new Editorial();
             editorial.setNombre(nombre);
             editorial.setAlta(true);
@@ -68,6 +69,12 @@ public class EditorialServicio{
         } else {
             throw new ErrorServicio("La editorial no puede ser nulo.");
 
+        }
+    }
+    public void validar(String nombre) throws ErrorServicio{
+        Editorial editorial=editorialRepositorio.buscarPorNombre(nombre);
+        if(editorial!=null){
+            throw new ErrorServicio("Ya existe esa editorial en la base de datos");
         }
     }
 

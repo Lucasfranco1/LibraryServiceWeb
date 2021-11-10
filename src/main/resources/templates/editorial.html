@@ -43,6 +43,9 @@
                 <a class="nav-link" th:href="@{/editoriales}">Editoriales</a>
               </li>
               <li class="nav-item">
+                  <a class="nav-link" href="#prestamo">Préstamos</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="#contact">Contact</a>
               </li>
             
@@ -54,7 +57,8 @@
    
         
     </div>
-        <header class="contenedor-titulo" style="margin: 70px;height: 0px; text-align: center;">
+    <section id="tabla">
+    <header class="contenedor-titulo" style="margin: 70px;height: 0px; text-align: center;">
             <h2>Listado de Editoriales</h2>
         </header>
        <div class="row">
@@ -103,7 +107,9 @@
         </div>
                 
       </div>
-     
+
+    </section>
+             
     <!-- Scripts -->
 <script>
     window.sr = ScrollReveal();
@@ -113,9 +119,9 @@ sr.reveal('.navbar', {
   origin: 'bottom'
 });
 
-sr.reveal('.header-content-left', {
+sr.reveal('.contenedor-titulo', {
   duration: 2000,
-  origin: 'top',
+  origin: 'left',
   distance: '300px'
 });
 
@@ -131,7 +137,7 @@ sr.reveal('.header-btn', {
   origin: 'bottom'
 });
 
-sr.reveal('#testimonial div', {
+sr.reveal('#tabla div', {
   duration: 2000,
   origin: 'left',
   distance: '300px',

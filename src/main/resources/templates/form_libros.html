@@ -31,16 +31,19 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto" >
             <li class="nav-item active">
-              <a class="nav-link" href="@{/}">Inicio <span class="sr-only">(current)</span></a>
+              <a class="nav-link" th:href="@{/}">Inicio <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="@{/libros}">Libros</a>
+              <a class="nav-link" th:href="@{/libros}">Libros</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="@{/autores}">Autores</a>
+              <a class="nav-link" th:href="@{/autores}">Autores</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="@{/editoriales}">Editoriales</a>
+                <a class="nav-link" th:href="@{/editoriales}">Editoriales</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#prestamo">Préstamos</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#contact">Contact</a>
@@ -51,20 +54,21 @@
         </div>
       </nav>
       <br>
-        <div class="container" style="margin: 0; padding: 0; margin-top: 100px; width: 100%; margin-left: 200px;">
+        <div class="container" style="margin: 0; padding: 0; margin-top: 100px; width: 100%; margin-left: 100px;">
             <div class="row">
                 <div class="col-log-6 col-md6 col-sm-6 container justify-content-center card" style="background-color: #286cff;">
                     <h1 class="text-center" style="color: #fff;">Registro de Libro</h1>
                     <div class="card-body">
                         <form th:action="@{/libros/registro}" method="POST">
+                            <p th:if="${error != null}" th:text="${error}" style="color:#fff;"></p>
                             <div class="form-group">
                                 <label style="color: #fff;">ISBN :</label>
-                                <input  type="text" name="isbn"  class="form-control" placeholder="Digite el isbn del libro" required>
+                                <input  type="text" name="isbn" th:value="${isbn}" class="form-control" placeholder="Digite el isbn del libro" >
                             </div>
                             
                             <div class="form-group">
                                 <label style="color: #fff;">Título :</label>
-                                <input  type="text" name="titulo"  class="form-control" placeholder="Digite el título del libro" required>
+                                <input  type="text" name="titulo" th:value="${titulo}"  class="form-control" placeholder="Digite el título del libro">
                             </div>
                             
                             <div class="form-group">
@@ -93,19 +97,19 @@
                             
                             <div class="form-group">
                                 <label style="color: #fff;">Año :</label>
-                                <input  type="numer" name="anio"  class="form-control" placeholder="Digite el año del libro" required>
+                                <input  type="numer" name="anio" th:value="${anio}" class="form-control" placeholder="Digite el año del libro" >
                             </div>
                             <div class="form-group">
                                 <label style="color: #fff;">Cantidad :</label>
-                                <input  type="number" name="ejemplares"  class="form-control" placeholder="Digite la cantidad del libros" required>
+                                <input  type="number" name="ejemplares" th:value="${ejemplares}" class="form-control" placeholder="Digite la cantidad del libros" >
                             </div>
                             <div class="form-group">
                                 <label style="color: #fff;">Cantidad de libros Prestados :</label>
-                                <input  type="number" name="ejemplaresPrestados"  class="form-control" placeholder="Digite la cantidad del libros prestados" required>
+                                <input  type="number" name="ejemplaresPrestados" th:value="${ejemplaresPrestados}" class="form-control" placeholder="Digite la cantidad del libros prestados" >
                             </div>
                             <div class="form-group">
                                 <label style="color: #fff;">Cantidad de libros Restantes :</label>
-                                <input  type="number" name="ejemplaresRestantes"  class="form-control" placeholder="Digite la cantidad del libros restantes" required>
+                                <input  type="number" name="ejemplaresRestantes"  th:value="${ejemplaresRestantes}" class="form-control" placeholder="Digite la cantidad del libros restantes" >
                             </div>
                             
                            
@@ -119,5 +123,56 @@
             </div>
         </div>
         
-    </body>
+    <!-- Scripts -->
+<script>
+    window.sr = ScrollReveal();
+
+sr.reveal('.navbar', {
+  duration: 2000,
+  origin: 'bottom'
+});
+
+sr.reveal('.contenedor-titulo', {
+  duration: 2000,
+  origin: 'left',
+  distance: '300px'
+});
+
+sr.reveal('.container', {
+  duration: 2000,
+  origin: 'right',
+  distance: '300px'
+});
+
+sr.reveal('.header-btn', {
+  duration: 2000,
+  delay: 1000, 
+  origin: 'bottom'
+});
+
+sr.reveal('#tabla div', {
+  duration: 2000,
+  origin: 'left',
+  distance: '300px',
+  viewFactor: 0.2
+});
+// Smoth scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    document.querySelector(this.getAttribute('href')).scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+});
+
+    
+</script>
+
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+   
 </html>

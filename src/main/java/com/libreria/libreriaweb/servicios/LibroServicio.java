@@ -40,7 +40,7 @@ public class LibroServicio {
     public void crearLibro(Long isbn, String titulo, String idAutor, String idEditorial, Integer anio, Integer ejemplares, Integer ejemplaresPrestados,
             Integer ejemplaresRestantes) throws ErrorServicio {
 
-        try {
+        
             validar(isbn, titulo, anio, ejemplares, ejemplaresPrestados, ejemplaresRestantes);
 
             Libro libro = new Libro();
@@ -68,9 +68,7 @@ public class LibroServicio {
                 libro.setEditorial(editorial);  
               }              
             libroRepositorio.save(libro);
-        } catch (Exception e) {
-            System.out.println(e.getMessage() + "Error al cargar libro");
-        }
+        
 
     }
 
@@ -176,6 +174,10 @@ public class LibroServicio {
 
         if (isbn == null || isbn < 0) {
             throw new ErrorServicio("El isbn del libro no puede ser nulo, ni menor a 0.");
+        }
+        Libro libro=libroRepositorio.buscarporIsbn(isbn);
+        if(libro!=null){
+            throw new ErrorServicio("Ya existe ese isbn");
         }
         if (titulo == null || titulo.isEmpty()) {
             throw new ErrorServicio("El título del libro no puede ser nulo, ni estar vacío.");

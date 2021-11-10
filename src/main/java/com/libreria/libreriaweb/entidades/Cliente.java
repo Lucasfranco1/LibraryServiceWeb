@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -16,6 +17,7 @@ import org.hibernate.annotations.GenericGenerator;
  * @author lucas
  */
 @Entity
+@Table(name="cliente")
 public class Cliente {
     @Id
     @GeneratedValue(generator="uuid")
@@ -34,6 +36,7 @@ public class Cliente {
     private Boolean alta;
 
     public Cliente() {
+        alta=true;
     }
 
     public Cliente(String id, Long documento, String nombre, String apellido, String telefono, Boolean alta) {

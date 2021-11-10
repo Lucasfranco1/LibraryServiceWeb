@@ -43,6 +43,9 @@
                 <a class="nav-link" th:href="@{/editoriales}">Editoriales</a>
               </li>
               <li class="nav-item">
+                  <a class="nav-link" href="#prestamo">Préstamos</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="#contact">Contact</a>
               </li>
             
@@ -51,12 +54,15 @@
         </div>
       </nav>
       <br>
-        <div class="container" style="margin: 0; padding: 0; margin-top: 100px; width: 100%; margin-left: 200px;">
+        <div class="container" style="margin: 0; padding: 0; margin-top: 100px; width: 100%; margin-left: 100px;">
             <div class="row">
                 <div class="col-log-6 col-md6 col-sm-6 container justify-content-center card" style="background-color: #286cff;">
                     <h1 class="text-center" style="color: #fff;">Registro de Autor</h1>
+                    
                     <div class="card-body">
                         <form th:action="@{/autores/registro}"  method="POST">
+                            <br>
+                            <p th:if="${error != null}" th:text="${error}"></p>
                             <div class="form-group">
                                 <label style="color: #fff;">Nombre :</label>
                                 <input type="text" name="nombre" class="form-control" placeholder="Digite el nombre del autor" required>
@@ -71,6 +77,55 @@
                 </div>
             </div>
         </div>
-        
+         <!-- Scripts -->
+<script>
+    window.sr = ScrollReveal();
+
+sr.reveal('.navbar', {
+  duration: 2000,
+  origin: 'bottom'
+});
+
+sr.reveal('.contenedor-titulo', {
+  duration: 2000,
+  origin: 'left',
+  distance: '300px'
+});
+
+sr.reveal('.container', {
+  duration: 2000,
+  origin: 'right',
+  distance: '300px'
+});
+
+sr.reveal('.header-btn', {
+  duration: 2000,
+  delay: 1000, 
+  origin: 'bottom'
+});
+
+sr.reveal('#tabla div', {
+  duration: 2000,
+  origin: 'left',
+  distance: '300px',
+  viewFactor: 0.2
+});
+// Smoth scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    document.querySelector(this.getAttribute('href')).scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+});
+
+    
+</script>
+
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </body>
 </html>

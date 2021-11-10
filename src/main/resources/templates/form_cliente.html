@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/img/flatico.png">
-    <link rel="stylesheet" href="static.css/style.css">
-    <link rel="stylesheet" href="static.css/dos.css">
-    <link rel="stylesheet" href="static.css/cuatro.css">
+    <link rel="stylesheet" href="/static.css/style.css">
+    <link rel="stylesheet" href="/static.css/dos.css">
+    <link rel="stylesheet" href="/static.css/cuatro.css">
     <!-- FUentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,7 +34,7 @@
               <a class="nav-link" th:href="@{/}">Inicio <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" th:href="@{/libros}">Libros</a>
+              <a class="nav-link"th:href="@{/libros}">Libros</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" th:href="@{/autores}">Autores</a>
@@ -42,75 +42,53 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/editoriales}">Editoriales</a>
               </li>
-               <li class="nav-item">
-                <a class="nav-link" href="#prestamo">Préstamos</a>
+              <li class="nav-item">
+                  <a class="nav-link" href="#prestamo">Préstamos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#contact">Contact</a>
+                <a class="nav-link" th:href="@{/clientes}">Clientes</a>
               </li>
             
           </ul>
         </div>
         </div>
       </nav>
-      <!-- HEADER -->
-   
-        
-    </div>
-    <section id="tabla">
-        <header class="contenedor-titulo" style="margin: 70px;height: 0px; text-align: center;">
-            <h2>Listado de Autores</h2>
-        </header>
-       <div class="row">
-                <div class="col-lg-3" style="margin-left:282px; margin-top:20px">
-                    <a th:href="@{/autores/listar}" class="btn btn-light btn-sm mb3" >Listar Autores</a>
-                </div>
-                
-            </div>
-        <div class="contenedor" style="margin: auto; width: 800px; text-align: center;  ">
-            
-                    <div class="col-mt-2">
-                        <table class="table table-bordered table-dark">
-                            <thead>
-                            <tr>
-                                <th scope="col">Nombre</th> 
-                                <th scope="col">Estado</th>                               
-                                <th scope="col">Acciones</th>
-                             </tr>
-                             </thead>
-                            <tbody >
-                            <tr th:each="autor:${autores}" >                                      
-                             <td th:text="${autor.nombre}"></td>
-                
-                             <td>
-                                    <span th:if="${autor.alta}">Alta</span>
-                                    <span th:unless="${autor.alta}">Baja</span>
-                              </td>                              
-                             <td>
-                            <a th:href="@{/autores/editar/{id}(id=${autor.id})}" class="btn btn-info" >Editar</a>
-                            <a th:href="@{/autores/baja/{id}(id=${autor.id})}" class="btn btn-danger" >Dar de Baja</a>
-                            <a th:href="@{/autores/alta/{id}(id=${autor.id})}" class="btn btn-success" >Dar de Alta</a>
-                            <a th:href="@{/autores/eliminar/{id}(id=${autor.id})}" class="btn btn-warning" >Eliminar</a>
-                            </td>
-                            </tr>
-                  
-                             </tbody>
-                        </table>
+      <br>
+        <div class="container" style="margin: 0; padding: 0; margin-top: 100px; width: 100%; margin-left: 100px;">
+            <div class="row">
+                <div class="col-log-6 col-md6 col-sm-6 container justify-content-center card" style="background-color: #286cff;">
+                    <h1 class="text-center" style="color: #fff;">Registro de Cliente</h1>
+                    
+                    <div class="card-body">
+                        <form th:action="@{/clientes/registro}" method="POST">
+                            <p th:if="${error != null}" th:text="${error}" style="color:#fff;"></p>
+                            <div class="form-group">
+                                <label style="color: #fff;">DNI :</label>
+                                <input type="number" name="documento" th:value="${documento}" class="form-control" placeholder="Digite el dni del cliente" >
+                            </div>
+                            <div class="form-group">
+                                <label style="color: #fff;">Nombre :</label>
+                                <input type="text" name="nombre"  th:value="${nombre}" class="form-control" placeholder="Digite el nombre del cliente" >
+                            </div>
+                            <div class="form-group">
+                                <label style="color: #fff;">Apellido :</label>
+                                <input type="text" name="apellido" th:value="${apellido}" class="form-control" placeholder="Digite el apellido del cliente" >
+                            </div>
+                            <div class="form-group">
+                                <label style="color: #fff;">Teléfono :</label>
+                                <input type="text" name="telefono" th:value="${telefono}" class="form-control" placeholder="Digite el teléfono del cliente" >
+                            </div>
+                            <br>                         
+                            <div class="box-footer">
+                                <button type="submit" id="btnsubmit" style="background-color: #286cff;" class="boton dos mt-sm-1" ><span style="color: #fff;">Guardar</span> </button>
+                            </div>
+                            
+                        </form>
                     </div>
-                    <div class="row" style=" margin-right:50px; padding:auto; margin-top: -10px;">
-                        <div class="col-lg-1">
-                            <a th:href="@{/autores/nuevo}" class="btn btn-primary btn-sm mb3">Agregar Autor</a>
-                        </div>
-                    
-                    
-   
+                </div>
+            </div>
         </div>
-                
-      </div>
-    </section>
-     
-    <!-- Scripts -->
-<script>
+       <script>
     window.sr = ScrollReveal();
 
 sr.reveal('.navbar', {
@@ -124,7 +102,7 @@ sr.reveal('.contenedor-titulo', {
   distance: '300px'
 });
 
-sr.reveal('.header-content-right', {
+sr.reveal('.container', {
   duration: 2000,
   origin: 'right',
   distance: '300px'
@@ -159,5 +137,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
+
+ 
+        
+    </body>
 </html>

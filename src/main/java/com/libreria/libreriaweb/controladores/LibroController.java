@@ -54,26 +54,7 @@ public class LibroController {
         return "libro.html";
 
     }
-//    @GetMapping("libros/todos-autores{l.autor.nombre}")//cualquiera de esas rutas
-//    public String listarLibrosAutores(ModelMap modelo, @PathVariable String nombre) throws ErrorServicio {
-//
-//        List<Libro> todos = lService.ListarTodo(nombre);
-//        modelo.addAttribute("libros", todos);
-////        List<Libro> todo = lService.ListarTodo();
-////        modelo.addAttribute("libros", todo);
-//        return "libro.html";
-//
-//    }
-//
-//    @GetMapping("libros/todos")
-//    public String listarTodo(ModelMap modelo) {
-////      
-//        List<Libro> todo = lService.ListarTodo();
-//        modelo.addAttribute("libros", todo);
-//        return "libro-todo.html";
-////      
-////        
-//    }
+
 
     @GetMapping("/libros/nuevo")
     public String MostrarFormOtroLibro(ModelMap modelo) {
@@ -91,7 +72,7 @@ public class LibroController {
     }
     
 
-    @PostMapping("libros/registro")
+    @PostMapping("/libros/registro")
     public String guardarLibro(ModelMap modelo, @RequestParam(required = false) Long isbn, @RequestParam(required = false) String titulo, @RequestParam(required = false) String idAutor, @RequestParam(required = false) String idEditorial, @RequestParam(required = false) Integer anio, @RequestParam (required = false) Integer ejemplares,
             @RequestParam(required = false) Integer ejemplaresPrestados, @RequestParam(required = false) Integer ejemplaresRestantes) throws ErrorServicio {
         try {
@@ -102,6 +83,8 @@ public class LibroController {
             return "libroexito.html";
 
         } catch (Exception e) {
+           
+            modelo.put("error", e.getMessage());
             modelo.put("isbn", isbn);
             modelo.put("titulo", titulo);
             List<Autor>autores=aService.listarAutores();
@@ -113,10 +96,9 @@ public class LibroController {
             modelo.put("prestados", ejemplaresPrestados);
             modelo.put("restantes", ejemplaresRestantes);
             //muestro el error
-            modelo.put("error", "faltó algún dato");
                     
             System.out.println(e.getMessage() + "Falló algo");
-            return "redirect:/";
+            return "form_libros.html";
 
         }
     }

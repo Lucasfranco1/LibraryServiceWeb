@@ -59,9 +59,9 @@ public class AutorController {
     }
 
     @PostMapping("/autores/registro")
-    public String guardarAutor(ModelMap modelo, @RequestParam String nombre) throws ErrorServicio {
+    public String guardarAutor(ModelMap modelo, @RequestParam(required = false) String nombre) throws ErrorServicio {
         try {
-
+           
             autorService.guardarAutor(nombre);
 
             modelo.put("titulo", "LibreryService");
@@ -69,8 +69,8 @@ public class AutorController {
             return "autorexito.html";
 
         } catch (Exception e) {
-            System.out.println(e.getMessage() + "Falló algo");
-            return "redirect:/";
+            modelo.put("error", e.getMessage());         
+            return "redirect:/autores/nuevo";
 
         }
     }

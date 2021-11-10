@@ -21,7 +21,7 @@ public class Editorial {
     @GenericGenerator(name="uuid",strategy="uuid2")
 //     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
-   // @Column(unique = true)
+    @Column(unique = true)
     private String nombre;
     private Boolean alta;
 //    @OneToMany(mappedBy = "editorial")

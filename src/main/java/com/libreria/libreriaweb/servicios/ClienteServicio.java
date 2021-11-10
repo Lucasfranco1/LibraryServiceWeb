@@ -7,18 +7,18 @@ package com.libreria.libreriaweb.servicios;
 
 import com.libreria.libreriaweb.entidades.Cliente;
 import com.libreria.libreriaweb.exceptiones.ErrorServicio;
-import com.libreria.libreriaweb.repositorios.ClienteRepositorio;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.libreria.libreriaweb.repositorios.ClienteRepository;
 
 @Service
 public class ClienteServicio {
     
     @Autowired
-    private ClienteRepositorio cR;
+    private ClienteRepository cR;
     
     
     public Cliente crearCliente(Long documento, String nombre, String apellido, String telefono) throws ErrorServicio{
@@ -34,19 +34,14 @@ public class ClienteServicio {
         return cR.save(cliente);
         
     }
-    public Cliente modificarCliente(String id, Long documento, String nombre, String apellido, String telefono) throws ErrorServicio{
-        validar(documento, nombre, apellido, telefono);
-        Optional<Cliente> resp=cR.findById(id);
-        if(resp.isPresent()){
-        Cliente c=resp.get();
-            c.setDocumento(documento);
-            c.setNombre(nombre);
-            c.setApellido(apellido);
-            c.setTelefono(telefono);
-            
-           return cR.save(c); 
-        }else{
-            throw new ErrorServicio("No existe un cliente con el id solicitado.");
+    public Cliente modificarCliente(Cliente cliente) throws ErrorServicio{
+       if (cliente != null) {
+
+            return cR.save(cliente);
+
+        } else {
+            throw new ErrorServicio("El cliente no puede ser nulo.");
+
         }
     }
     
@@ -74,6 +69,10 @@ public class ClienteServicio {
         if (documento == null || documento < 0) {
             throw new ErrorServicio("El documento del cliente no puede ser nulo, ni menor a 0.");
         }
+        Cliente dni= cR.buscarporDocumento(documento);
+        if(dni!=null){
+            throw new ErrorServicio("Ese dni ya existe");
+        }
         if (nombre == null ||  nombre.isEmpty()) {
             throw new ErrorServicio("El nombre del cliente no puede ser nulo, ni estar vacío.");
         }
@@ -85,12 +84,12 @@ public class ClienteServicio {
         }
     }
     @Transactional
-    public List<Cliente> listarAutores() throws ErrorServicio {
+    public List<Cliente> listarClientes() throws ErrorServicio {
 
         return cR.findAll(); //findAll()Para buscar todos 
     }
-    public Cliente buscarClienteNombre(String nombre){
+    public Cliente buscarClienteId(String id){
 
-        return cR.buscarPorNombre(nombre);
+        return cR.buscarPorId(id);
     }
 }

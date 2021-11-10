@@ -43,6 +43,9 @@
                 <a class="nav-link" th:href="@{/editoriales}">Editoriales</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="#prestamo">Préstamos</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="#contact">Contact</a>
               </li>
             
@@ -51,12 +54,12 @@
         </div>
       </nav>
       <!-- HEADER -->
-      
-        <header class="contenedor-titulo" style="margin: 100px; text-align: center;">
-            <h2>Listado de libros</h2>
+      <section id="tabla">
+         <header class="contenedor-titulo" style="margin: 100px; text-align: center;">
+            <h2>Listado de Libros</h2>
         </header>
         <div class="row">
-                <div class="col-lg-3" style="margin-left:282px; margin-top:20px">
+                <div class="col-lg-3" style="margin-left:100px; margin-top:68px; margin-bottom:-150px ">
                     <a th:href="@{/libros/listar}" class="btn btn-light btn-sm mb3" >Listar Libros</a>
                 </div>
                 
@@ -109,14 +112,16 @@
               </table>
    
         </div>
-       <div class="row" style=" margin-right:50px; padding:auto; margin-top: -10px;">
+       <div class="row" style=" margin-left:85px; padding:auto; margin-top: -100px;">
                         <div class="col-lg-1">
                             <a th:href="@{/libros/nuevo}" class="btn btn-primary btn-sm mb3">Agregar Libro</a>
                         </div>
-                    
+          </div>
+      </section>
+                   
        
         
-    </div>
+    
     <!-- Scripts -->
 <script>
     window.sr = ScrollReveal();
@@ -126,9 +131,9 @@ sr.reveal('.navbar', {
   origin: 'bottom'
 });
 
-sr.reveal('.header-content-left', {
+sr.reveal('.contenedor-titulo', {
   duration: 2000,
-  origin: 'top',
+  origin: 'left',
   distance: '300px'
 });
 
@@ -144,7 +149,7 @@ sr.reveal('.header-btn', {
   origin: 'bottom'
 });
 
-sr.reveal('#testimonial div', {
+sr.reveal('#tabla div', {
   duration: 2000,
   origin: 'left',
   distance: '300px',

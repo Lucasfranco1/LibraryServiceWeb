@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/img/flatico.png">
-    <link rel="stylesheet" href="static.css/style.css">
-    <link rel="stylesheet" href="static.css/dos.css">
-    <link rel="stylesheet" href="static.css/cuatro.css">
+    <link rel="stylesheet" href="/static.css/style.css">
+    <link rel="stylesheet" href="/static.css/dos.css">
+    <link rel="stylesheet" href="/static.css/cuatro.css">
     <!-- FUentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,11 +42,11 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/editoriales}">Editoriales</a>
               </li>
-               <li class="nav-item">
-                <a class="nav-link" href="#prestamo">Préstamos</a>
+              <li class="nav-item">
+                  <a class="nav-link" href="#prestamo">Préstamos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#contact">Contact</a>
+                <a class="nav-link" th:href="@{/clientes}">Clientes</a>
               </li>
             
           </ul>
@@ -57,16 +57,28 @@
         <div class="container" style="margin: 0; padding: 0; margin-top: 100px; width: 100%; margin-left: 200px;">
             <div class="row">
                 <div class="col-log-6 col-md6 col-sm-6 container justify-content-center card" style="background-color: #286cff;">
-                    <h1 class="text-center" style="color: #fff;">Editar Autor</h1>
+                    <h1 class="text-center" style="color: #fff;">Editar Cliente</h1>
                     <div class="card-body">
-                        <form th:action="@{/autores/{id}(id=${autor.id})}"  method="POST">
+                        <form th:action="@{/clientes/{id}(id=${cliente.id})}" method="POST">
+                            <div class="form-group">
+                                <label style="color: #fff;">DNI :</label>
+                                <input th:value="${cliente.documento}" type="number" name="documento" class="form-control" placeholder="Digite el documento del cliente" required>
+                            </div>
                             <div class="form-group">
                                 <label style="color: #fff;">Nombre :</label>
-                                <input th:value="${autor.nombre}" type="text" name="nombre" class="form-control" placeholder="Digite el nombre del autor" required>
+                                <input th:value="${cliente.nombre}" type="text" name="nombre" class="form-control" placeholder="Digite el nombre del cliente" required>
+                            </div>
+                            <div class="form-group">
+                                <label style="color: #fff;">Apellido :</label>
+                                <input th:value="${cliente.apellido}" type="text" name="apellido" class="form-control" placeholder="Digite el apellido del cliente" required>
+                            </div>
+                             <div class="form-group">
+                                <label style="color: #fff;">Teléfono :</label>
+                                <input th:value="${cliente.telefono}" type="text" name="telefono" class="form-control" placeholder="Digite el teléfono del cliente" required>
                             </div>
                             <br>                         
                             <div class="box-footer">
-                                <button style="background-color: #286cff;" class="btn-primary mt-sm-1" ><span style="color: #fff;">Guardar</span> </button>
+                                <button type="submit" style="background-color: #286cff;" class="boton dos mt-sm-1" ><span style="color: #fff;">Guardar</span> </button>
                             </div>
                             
                         </form>
