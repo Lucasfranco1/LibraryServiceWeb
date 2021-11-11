@@ -136,5 +136,27 @@ public class LibroController {
         }
 
     }
+    @GetMapping("libros/baja/{id}")
+    public String baja(@PathVariable String id) {
+
+        try {
+            lService.baja(id);
+            return "redirect:/libros/listar";
+        } catch (Exception e) {
+            return "redirect:/";
+        }
+
+    }
+     @GetMapping("libros/alta/{id}")
+    public String alta(@PathVariable String id) {
+
+        try {
+            lService.alta(id);
+            return "redirect:/libros/listar";
+        } catch (Exception e) {
+            return "redirect:/";
+        }
+
+    }
 
 }
