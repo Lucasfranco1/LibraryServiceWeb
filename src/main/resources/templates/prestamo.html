@@ -5,9 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/img/flatico.png">
-    <link rel="stylesheet" href="static.css/style.css">
-    <link rel="stylesheet" href="static.css/dos.css">
-    <link rel="stylesheet" href="static.css/cuatro.css">
+    <link rel="stylesheet" href="/static.css/style.css">
+    <link rel="stylesheet" href="/static.css/dos.css">
+    <link rel="stylesheet" href="/static.css/cuatro.css">
+    <link rel="stylesheet" href="/static.css/cuatro_1.css">
+    <link rel="stylesheet" href="/static.css/seis.css">
     <!-- FUentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,12 +62,12 @@
         </header>
         <div class="row">
                 <div class="col-lg-3" style="margin-left:100px; margin-top:68px; margin-bottom:-150px ">
-                    <a th:href="@{/prestamos/listar}" class="btn btn-light btn-sm mb3" >Listar Préstamos</a>
+                    <a th:href="@{/prestamos/listar}" class="btn btn-warning btn-sm mb3" >Listar Préstamos</a>
                 </div>
                 
             </div>
       
-        <div class="contenedor" style="margin: 100px;text-align: center;" >
+        <div class="contenedor" style="margin: 100px;text-align: center; display: flex;align-content: center;align-items: center">
             <table class="table table-bordered table-dark">
                 <thead>
                   <tr>
@@ -77,8 +79,9 @@
                     <th scope="col">Fecha de Devolución</th>
                     <th scope="col">Estado de Préstamo</th>
                     <th scope="col">Multa</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Acciones</th>
+                    <th scope="col">Activo</th>
+                    <th scope="col">Devoluciones</th>
+                    <th scope="col">Eliminar</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -93,18 +96,19 @@
                     <td th:text="${prestamo.multa}"></td>
                    
                     <td>
-                                    <span th:if="${prestamo.alta}">Alta</span>
-                                    <span th:unless="${prestamo.alta}">Baja</span>
+                                    <span th:if="${prestamo.alta}" style="color: green">Activo</span>
+                                    <span th:unless="${prestamo.alta}" class="fa-circle" style="color: red">Activo</span>
                     </td>
                               
                     <td>
                        
-                            <!--<a th:href="@{/prestamos/editar/{id}(id=${prestamo.id})}" class="btn btn-info" >Editar</a>-->
-                            <a th:href="@{/prestamos/baja/{id}(id=${prestamo.id})}" class="btn btn-danger" >Dar de Baja</a>
-                            <a th:href="@{/prestamos/alta/{id}(id=${prestamo.id})}" class="btn btn-success" >Dar de Alta</a>
-                            <!--<a th:href="@{/prestamos/eliminar/{id}(id=${prestamo.id})}" class="btn btn-warning" >Eliminar</a>-->
+                        <a th:href="@{/prestamos/finalizacion/{id}(id=${prestamo.id})}" class="btn btn-neon2"style="display: flex; align-content: center; color: #286cff">Devolución</a>
+                            
+                            
                     </td>
-                   
+                    <td>
+                        <a th:href="@{/prestamos/eliminar/{id}(id=${prestamo.id})}" class="btn btn-neon" style="display: flex; align-content: center; color: white">Eliminar</a>
+                    </td>
                   </tr>
                   
                 </tbody>
@@ -117,7 +121,7 @@
                         </div>
           </div>
       </section>
-                   
+      
        
         
     

@@ -57,23 +57,23 @@
         <div class="container" style="margin: 0; padding: 0; margin-top: 100px; width: 100%; margin-left: 100px;">
             <div class="row">
                 <div class="col-log-6 col-md6 col-sm-6 container justify-content-center card" style="background-color: #286cff;">
-                    <h1 class="text-center" style="color: #fff;">Registro de Libro</h1>
+                    <h1 class="text-center" style="color: #fff;">Devolución de Libros</h1>
                     <div class="card-body">
-                        <form th:action="@{/prestamos/finalizacionDePrestamo}" method="POST">
+                        <form th:action="@{/prestamos/finalizacionDePrestamo{id}(id=${prestamo.id})}" method="POST">
                             <p th:if="${error != null}" th:text="${error}" style="color:#fff;"></p>
-                            <div class="form-group">
+<!--                            <div class="form-group">
                                 <label style="color: #fff;">Prestamo :</label>
                                 <select  class="form-control" name="idPrestamo">
                                 <option th:each="prestamo : ${prestamos}" th:if="${prestamo.estadoPrestamo.name() == 'COMENZADO'}" th:value="${prestamo.id}"  th:text="'Cliente:'+ ${prestamo.cliente.nombre} + '.Libro:' + ${prestamo.libros.titulo}"></option>
                                 </select>                               
-                            </div>
+                            </div>-->
                                                         
                             <div class="form-group">
                                 <label style="color: #fff;">Fecha de Definitiva de Devolución :</label>
-                                <input  type="date" name="fechaDevolucion" th:value="${fechaDevolucion}" class="form-control">
+                                <input  type="date" name="fechaDevolucion" th:value="${fechaDevolucion}" class="form-control" required="Por favor introduce la fecha">
                             </div>                                                                             
                             <div class="box-footer">
-                                <button style="background-color: #286cff;" class="boton dos mt-sm-1" ><span style="color: #fff;">Finalizar Préstamo</span> </button>
+                                <button type="submit" style="background-color: #286cff;" class="boton dos mt-sm-1" ><span style="color: #fff;">Finalizar Préstamo</span> </button>
                             </div>
                             
                         </form>

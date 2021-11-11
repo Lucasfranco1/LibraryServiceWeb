@@ -48,4 +48,116 @@ footer{
 	width: 100%;
 	
 }
+.btn-neon:hover{
+    background: #cc6600;
+    box-shadow: 0 0 10px #cc6600, 0 0 40px #cc6600, 0 0 80px #cc6600;
+    transition-delay: 1s;
+ }
+.btn-neon span{
+    position: absolute;
+    display: block;
+}
+#span1{
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent,#cc6600);
+ }
+ .btn-neon:hover #span1{
+    left: 100%;
+    transition: 1s;
+}
+ #span3{
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent,#cc6600);
+}
+ .btn-neon:hover #span3{
+    right: 100%;
+    transition: 1s;
+    transition-delay: 0.5s;
+}
+#span2{
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg,transparent,#cc6600);
+}
+.btn-neon:hover #span2{
+    top: 100%;
+    transition: 1s;
+    transition-delay: 0.25s;
+}
+#span4{
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg,transparent,#cc6600);
+}
+.btn-neon:hover #span4{
+    bottom: 100%;
+    transition: 1s;
+    transition-delay: 0.75s;
+}
+.btn-neon2:hover{
+    background: #c9e9fc;
+    box-shadow: 0 0 10px #c9e9fc, 0 0 40px #c9e9fc, 0 0 80px #c9e9fc;
+    transition-delay: 1s;
+ }
+.btn-neon span{
+    position: absolute;
+    display: block;
+}
+#span11{
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent,#c9e9fc);
+ }
+ .btn-neon2:hover #span11{
+    left: 100%;
+    transition: 1s;
+}
+ #span33{
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent,#c9e9fc);
+}
+ .btn-neon2:hover #span33{
+    right: 100%;
+    transition: 1s;
+    transition-delay: 0.5s;
+}
+#span22{
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg,transparent,#c9e9fc);
+}
+.btn-neon2:hover #span22{
+    top: 100%;
+    transition: 1s;
+    transition-delay: 0.25s;
+}
+#span44{
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg,transparent,#c9e9fc);
+}
+.btn-neon2:hover #span44{
+    bottom: 100%;
+    transition: 1s;
+    transition-delay: 0.75s;
+}
 

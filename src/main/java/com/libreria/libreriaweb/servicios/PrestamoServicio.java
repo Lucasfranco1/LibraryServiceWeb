@@ -62,7 +62,12 @@ public class PrestamoServicio {
         Prestamo prestamo = pR.buscarPrestamoporId(idPrestamo);
         String idLibro = prestamo.getLibro().getId();
         Libro libro = lS.obtenerLibroPorId(idLibro);
-
+//        if(fechaDevolucion==null){
+//            throw new ErrorServicio("Tienes que introducir la fecha de devolución.");
+//        }
+//        if(prestamo.getAlta()==false){
+//            throw new ErrorServicio("Ese préstamos ya está concluído.");
+//        }
         if (fechaDevolucion.compareTo(prestamo.getFechaDevolucion()) > 0) {
             prestamo.setMulta(calcularMultaFinal(fechaDevolucion, prestamo.getFechaDevolucion()));
         }
@@ -71,11 +76,15 @@ public class PrestamoServicio {
         libro.setEjemplaresRestantes(libro.getEjemplaresRestantes() + 1);
         prestamo.setEstadoPrestamo(EstadoPrestamo.TERMINADO);
         prestamo.setFechaDevolucion(fechaDevolucion);
-
+        prestamo.setAlta(false);
         pR.save(prestamo);
 
     }
-
+    public void comprobarEstadoPrestamo(String id) throws ErrorServicio{
+        if(pR.getById(id).getAlta()==false){
+                throw new ErrorServicio("Ya concluyó dicho préstamo");
+            }
+    }
 //	
     public Integer calcularMultaFinal(Date fechaDevolucion, Date devolucion) {
         int precioXDia = 30;
@@ -121,5 +130,14 @@ public class PrestamoServicio {
             prestamo.setAlta(true);
             pR.save(prestamo);
         }
+    }
+    @Transactional
+    public void eliminar(String id) throws ErrorServicio{
+         Optional<Prestamo> entidad = pR.findById(id);
+         if(entidad.isPresent()){
+         pR.deleteById(id);
+        }else{
+             throw new ErrorServicio("Error al eliminar autor");
+         }
     }
 }
