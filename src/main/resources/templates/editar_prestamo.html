@@ -43,10 +43,10 @@
                 <a class="nav-link" th:href="@{/editoriales}">Editoriales</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="#prestamo">Préstamos</a>
+                  <a class="nav-link" th:href="@{/prestamo}">Préstamos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#contact">Contact</a>
+                <a class="nav-link" th:href="@{/clientes}">Clientes</a>
               </li>
             
           </ul>
@@ -59,60 +59,35 @@
                 <div class="col-log-6 col-md6 col-sm-6 container justify-content-center card" style="background-color: #286cff;">
                     <h1 class="text-center" style="color: #fff;">Registro de Libro</h1>
                     <div class="card-body">
-                        <form th:action="@{/libros/registro}" method="POST">
+                        <form th:action="@{/prestamos/confirmar-edicion{id}(id=${prestamo.id})}" method="POST">
                             <p th:if="${error != null}" th:text="${error}" style="color:#fff;"></p>
                             <div class="form-group">
-                                <label style="color: #fff;">ISBN :</label>
-                                <input  type="text" name="isbn" th:value="${isbn}" class="form-control" placeholder="Digite el isbn del libro" >
-                            </div>
-                            
-                            <div class="form-group">
-                                <label style="color: #fff;">Título :</label>
-                                <input  type="text" name="titulo" th:value="${titulo}"  class="form-control" placeholder="Digite el título del libro">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label style="color: #fff;">Autor :</label>
-                                <select  class="form-control" name="idAutor">
-                                <option th:each="autor : ${autores}" th:value="${autor.id}" th:text="${autor.nombre}"></option>
+                                <label style="color: #fff;">Cliente :</label>
+                                <select  class="form-control" name="idCliente">
+                                <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nombre}+ ' ' + ${cliente.apellido}"></option>
                                 </select>
-                                <p style="color:#fff; font-size: 10px">Si no se encuentra el Autor ve a la pestaña "Autor" y cárgalo</p>
+                                <p style="color:#fff; font-size: 10px">Si no se encuentra el Cliente ve a la pestaña "Cliente" y cárgalo</p>
                             </div>
+                            
                             <div class="form-group">
-                                <!--<label style="color: #fff;">Editorial :</label>-->
-                                <!--<input type="text" name="nombreAutor"  class="form-control" placeholder="Digite el autor del libro" required>-->
-                         <label style="color: #fff;">Editorial :</label>
-                                <select class="form-control" name="idEditorial">
-			<option th:each="editorial : ${editoriales}" th:value="${editorial.id}" th:text="${editorial.nombre}">
-			</option>
+                                <label style="color: #fff;">Libro :</label>
+                                <select  class="form-control" name="idLibro">
+                                <option th:each="libro : ${libros}" th:value="${libro.id}" th:text="${libro.titulo}+ 'ISBN' + ${libro.isbn}"></option>
                                 </select>
-                                <p style="color:#fff; font-size: 10px">Si no se encuentra la Editorial ve a la pestaña "Editorial" y cárgalo</p>
-                            </div>
-<!--                            <div class="form-group">
-                                <label style="color: #fff;">Editorial :</label>
-                                <input  type="text" name="nombreEditorial"  class="form-control" placeholder="Digite la editorial del libro" required>
-                            </div>-->
+                                <p style="color:#fff; font-size: 10px">Si no se encuentra el Libro ve a la pestaña "Libro" y cárgalo</p>
+                            </div>                                                                                
                             
                             <div class="form-group">
-                                <label style="color: #fff;">Año :</label>
-                                <input  type="numer" name="anio" th:value="${anio}" class="form-control" placeholder="Digite el año del libro" >
+                                <label style="color: #fff;">Fecha de Inicio del Préstamo :</label>
+                                <input  type="date" name="fechaPrestamo" th:value="${prestamo.fechaPrestamo}" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label style="color: #fff;">Cantidad :</label>
-                                <input  type="number" name="ejemplares" th:value="${ejemplares}" class="form-control" placeholder="Digite la cantidad del libros" >
-                            </div>
-                            <div class="form-group">
-                                <label style="color: #fff;">Cantidad de libros Prestados :</label>
-                                <input  type="number" name="ejemplaresPrestados" th:value="${ejemplaresPrestados}" class="form-control" placeholder="Digite la cantidad del libros prestados" >
-                            </div>
-                            <div class="form-group">
-                                <label style="color: #fff;">Cantidad de libros Restantes :</label>
-                                <input  type="number" name="ejemplaresRestantes"  th:value="${ejemplaresRestantes}" class="form-control" placeholder="Digite la cantidad del libros restantes" >
-                            </div>
-                            
+                                <label style="color: #fff;">Fecha de Finalización del Préstamo :</label>
+                                <input  type="date" name="fechaDevolucion" th:value="${prestamo.fechaDevolucion}" class="form-control">
+                            </div>                           
                            
                             <div class="box-footer">
-                                <button style="background-color: #286cff;" class="boton dos mt-sm-1" ><span style="color: #fff;">Guardar</span> </button>
+                                <button style="background-color: #286cff;" class="boton dos mt-sm-1" ><span style="color: #fff;">Modificar</span> </button>
                             </div>
                             
                         </form>

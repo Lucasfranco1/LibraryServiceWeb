@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/img/flatico.png">
-    <link rel="stylesheet" href="static.css/style.css">
-    <link rel="stylesheet" href="static.css/dos.css">
-    <link rel="stylesheet" href="static.css/cuatro.css">
+    <link rel="stylesheet" href="/static.css/style.css">
+    <link rel="stylesheet" href="/static.css/dos.css">
+    <link rel="stylesheet" href="/static.css/cuatro.css">
     <!-- FUentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,11 +42,11 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/editoriales}">Editoriales</a>
               </li>
-              <li class="nav-item">
+               <li class="nav-item">
                 <a class="nav-link" th:href="@{/prestamos}">Préstamos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" th:href="@{@/clientes}">Clientes</a>
+                <a class="nav-link" th:href="@{/clientes}">Clientes</a>
               </li>
             
           </ul>
@@ -54,73 +54,28 @@
         </div>
       </nav>
       <!-- HEADER -->
-      <section id="tabla">
-         <header class="contenedor-titulo" style="margin: 100px; text-align: center;">
-            <h2>Listado de Préstamos</h2>
+      
+        <header class="contenedor-titulo" style="margin: 100px; text-align: center;">
+            <h2 th:text="${titulo}"></h2>
+            <p th:text="${descrip}"></p>
+            <p th:text="${multa}"></p>
         </header>
         <div class="row">
-                <div class="col-lg-3" style="margin-left:100px; margin-top:68px; margin-bottom:-150px ">
+                <div class="col-lg-3" style="margin-left:282px; margin-top:20px">
                     <a th:href="@{/prestamos/listar}" class="btn btn-light btn-sm mb3" >Listar Préstamos</a>
                 </div>
                 
             </div>
       
-        <div class="contenedor" style="margin: 100px;text-align: center;" >
-            <table class="table table-bordered table-dark">
-                <thead>
-                  <tr>
-                    
-                    <th scope="col">Nombre del Cliente</th>
-                    <th scope="col">Apellido del Cliente</th> 
-                    <th scope="col">Título del Libro</th>
-                    <th scope="col">Fecha de Inicio</th>
-                    <th scope="col">Fecha de Devolución</th>
-                    <th scope="col">Estado de Préstamo</th>
-                    <th scope="col">Multa</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Acciones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr th:each="prestamo:${prestamos}" >
-                    
-                    <td th:text="${prestamo.cliente.nombre}"></td>
-                    <td th:text="${prestamo.cliente.apellido}"></td> 
-                    <td th:text="${prestamo.libro.titulo}"></td>
-                    <td th:text="${prestamo.fechaPrestamo}"></td> 
-                    <td th:text="${prestamo.fechaDevolucion}"></th>
-                    <td th:text="${prestamo.estadoPrestamo}"></th>
-                    <td th:text="${prestamo.multa}"></td>
-                   
-                    <td>
-                                    <span th:if="${prestamo.alta}">Alta</span>
-                                    <span th:unless="${prestamo.alta}">Baja</span>
-                    </td>
-                              
-                    <td>
-                       
-                            <!--<a th:href="@{/prestamos/editar/{id}(id=${prestamo.id})}" class="btn btn-info" >Editar</a>-->
-                            <a th:href="@{/prestamos/baja/{id}(id=${prestamo.id})}" class="btn btn-danger" >Dar de Baja</a>
-                            <a th:href="@{/prestamos/alta/{id}(id=${prestamo.id})}" class="btn btn-success" >Dar de Alta</a>
-                            <!--<a th:href="@{/prestamos/eliminar/{id}(id=${prestamo.id})}" class="btn btn-warning" >Eliminar</a>-->
-                    </td>
-                   
-                  </tr>
-                  
-                </tbody>
-              </table>
-   
-        </div>
-       <div class="row" style=" margin-left:85px; padding:auto; margin-top: -100px;">
-                        <div class="col-lg-1">
-                            <a th:href="@{/prestamos/nuevo}" class="btn btn-primary btn-sm mb3">Agregar Préstamo</a>
-                        </div>
-          </div>
-      </section>
-                   
-       
         
-    
+                
+      
+      <div class="row" style=" margin-top: -90px; padding:auto; margin-left: 85px; height: 0;">
+        <div class="col-lg-1">
+            <a th:href="@{/prestamos/nuevo}"  class="btn btn-primary btn-sm mb3">Agregar Préstamo</a>
+        </div>
+        
+    </div>
     <!-- Scripts -->
 <script>
     window.sr = ScrollReveal();
@@ -130,9 +85,9 @@ sr.reveal('.navbar', {
   origin: 'bottom'
 });
 
-sr.reveal('.contenedor-titulo', {
+sr.reveal('.header-content-left', {
   duration: 2000,
-  origin: 'left',
+  origin: 'top',
   distance: '300px'
 });
 
@@ -148,7 +103,7 @@ sr.reveal('.header-btn', {
   origin: 'bottom'
 });
 
-sr.reveal('#tabla div', {
+sr.reveal('#testimonial div', {
   duration: 2000,
   origin: 'left',
   distance: '300px',
