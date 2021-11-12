@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/static.css/cuatro.css">
     <link rel="stylesheet" href="/static.css/cuatro_1.css">
     <link rel="stylesheet" href="/static.css/seis.css">
+
     <!-- FUentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -95,35 +96,19 @@
                     <td th:text="${prestamo.estadoPrestamo}"></th>
                     <td th:text="${prestamo.multa}"></td>
                    
-                    <td>
-<<<<<<< HEAD
-                                    <span th:if="${prestamo.alta}" style="color: green">Activo</span>
-                                    <span th:unless="${prestamo.alta}" class="fa-circle" style="color: red">Activo</span>
-=======
-                                    <span th:if="${prestamo.alta}" style="color:green">Activo</span>
-                                    <span th:unless="${prestamo.alta}"style="color:red">Activo</span>
->>>>>>> d2e9ebc92d67255f545206455e6ed982438daa68
+                    <td>                                    
+                       <span th:if="${prestamo.alta}" style="color:green">Activo</span>
+                       <span th:unless="${prestamo.alta}"style="color:red">Activo</span>
+
                     </td>
-                              
-                    <td>
-                       
-<<<<<<< HEAD
-                        <a th:href="@{/prestamos/finalizacion/{id}(id=${prestamo.id})}" class="btn btn-neon2"style="display: flex; align-content: center; color: #286cff">Devolución</a>
-                            
-                            
+                                                 
+                    <td>                                                                 
+                        <a th:href="@{/prestamos/formularioDevolucion/{id}(id=${prestamo.id})}" class="btn btn-neon2">Devolución</a>                           
                     </td>
                     <td>
-                        <a th:href="@{/prestamos/eliminar/{id}(id=${prestamo.id})}" class="btn btn-neon" style="display: flex; align-content: center; color: white">Eliminar</a>
-                    </td>
-=======
-                        <a th:href="@{/prestamos/formularioDevolucion/{id}(id=${prestamo.id})}" class="btn btn-info">Devolución</a>
-                           
-                    </td>
-                    <td>
-                        <a th:href="@{/prestamos/eliminar/{id}(id=${prestamo.id})}" class="btn btn-warning" >Eliminar</a>
+                        <a th:href="@{/prestamos/eliminar/{id}(id=${prestamo.id})}" class="btn btn-neon" style="color:white">Eliminar</a>
                     </td>
                         
->>>>>>> d2e9ebc92d67255f545206455e6ed982438daa68
                   </tr>
                   
                 </tbody>

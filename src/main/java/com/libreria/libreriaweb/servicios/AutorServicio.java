@@ -101,15 +101,15 @@ public class AutorServicio {
         }
 
     }
-    @Transactional
-    public void eliminar(String id) throws ErrorServicio{
-         Optional<Autor> entidad = autorRepositorio.findById(id);
-         if(entidad.isPresent()){
-         autorRepositorio.deleteById(id);
-        }else{
-             throw new ErrorServicio("Error al eliminar autor");
-         }
-    }
+//    @Transactional
+//    public void eliminar(String id) throws ErrorServicio{
+//         Optional<Autor> entidad = autorRepositorio.findById(id);
+//         if(entidad.isPresent()){
+//         autorRepositorio.deleteById(id);
+//        }else{
+//             throw new ErrorServicio("Error al eliminar autor");
+//         }
+//    }
     public void validar(String nombre) throws ErrorServicio{
         Autor autor=autorRepositorio.buscarPorNombre(nombre);
         if(autor!=null){

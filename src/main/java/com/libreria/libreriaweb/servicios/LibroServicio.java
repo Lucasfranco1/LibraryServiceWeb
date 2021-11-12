@@ -127,15 +127,15 @@ public class LibroServicio {
         }
     }
 
-    @Transactional
-    public void eliminar(String id) throws ErrorServicio {
-        Optional<Libro> entidad = libroRepositorio.findById(id);
-        if (entidad.isPresent()) {
-            libroRepositorio.deleteById(id);
-        } else {
-            throw new ErrorServicio("Error al eliminar libro");
-        }
-    }
+//    @Transactional
+//    public void eliminar(String id) throws ErrorServicio {
+//        Optional<Libro> entidad = libroRepositorio.findById(id);
+//        if (entidad.isPresent()) {
+//            libroRepositorio.deleteById(id);
+//        } else {
+//            throw new ErrorServicio("Error al eliminar libro");
+//        }
+//    }
 
 //    }
 //    @Transactional

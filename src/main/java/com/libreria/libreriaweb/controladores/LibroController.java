@@ -125,17 +125,17 @@ public class LibroController {
         }
     }
 
-    @GetMapping("libros/eliminar/{id}")
-    public String eliminar(@PathVariable String id) {
-
-        try {
-            lService.eliminar(id);
-            return "redirect:/libros/listar";
-        } catch (Exception e) {
-            return "redirect:/";
-        }
-
-    }
+//    @GetMapping("libros/eliminar/{id}")
+//    public String eliminar(@PathVariable String id) {
+//
+//        try {
+//            lService.eliminar(id);
+//            return "redirect:/libros/listar";
+//        } catch (Exception e) {
+//            return "redirect:/";
+//        }
+//
+//    }
     @GetMapping("libros/baja/{id}")
     public String baja(@PathVariable String id) {
 

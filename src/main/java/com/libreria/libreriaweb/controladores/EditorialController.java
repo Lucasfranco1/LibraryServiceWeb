@@ -121,17 +121,17 @@ public class EditorialController {
         }
 
     }
-    @GetMapping("editoriales/eliminar/{id}")
-    public String eliminarEditorial(@PathVariable String id) {
-
-        try {
-            editorialService.eliminar(id);
-            return "redirect:/editoriales/listar";
-        } catch (Exception e) {
-            return "redirect:/";
-        }
-
-    }
+//    @GetMapping("editoriales/eliminar/{id}")
+//    public String eliminarEditorial(@PathVariable String id) {
+//
+//        try {
+//            editorialService.eliminar(id);
+//            return "redirect:/editoriales/listar";
+//        } catch (Exception e) {
+//            return "redirect:/";
+//        }
+//
+//    }
     
 
 }
