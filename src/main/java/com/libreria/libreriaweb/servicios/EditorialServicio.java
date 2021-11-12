@@ -98,15 +98,15 @@ public class EditorialServicio{
         }
 
     }
-    @Transactional
-    public void eliminar(String id) throws ErrorServicio{
-         Optional<Editorial> entidad = editorialRepositorio.findById(id);
-         if(entidad.isPresent()){
-            editorialRepositorio.deleteById(id);
-        }else{
-             throw new ErrorServicio("Error al eliminar la editorial");
-         }
-    }
+//    @Transactional
+//    public void eliminar(String id) throws ErrorServicio{
+//         Optional<Editorial> entidad = editorialRepositorio.findById(id);
+//         if(entidad.isPresent()){
+//            editorialRepositorio.deleteById(id);
+//        }else{
+//             throw new ErrorServicio("Error al eliminar la editorial");
+//         }
+//    }
 
 }
 

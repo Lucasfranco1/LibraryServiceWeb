@@ -119,17 +119,17 @@ public class AutorController {
         }
 
     }
-    @GetMapping("autores/eliminar/{id}")
-    public String eliminar(@PathVariable String id) {
-
-        try {
-            autorService.eliminar(id);
-            return "redirect:/autores/listar";
-        } catch (Exception e) {
-            return "redirect:/";
-        }
-
-    }
+//    @GetMapping("autores/eliminar/{id}")
+//    public String eliminar(@PathVariable String id) {
+//
+//        try {
+//            autorService.eliminar(id);
+//            return "redirect:/autores/listar";
+//        } catch (Exception e) {
+//            return "redirect:/";
+//        }
+//
+//    }
     
 
 }
