@@ -71,6 +71,7 @@ public class PrestamoServicio {
         libro.setEjemplaresRestantes(libro.getEjemplaresRestantes() + 1);
         prestamo.setEstadoPrestamo(EstadoPrestamo.TERMINADO);
         prestamo.setFechaDevolucion(fechaDevolucion);
+        prestamo.setAlta(false);
 
         pR.save(prestamo);
 
@@ -104,6 +105,13 @@ public class PrestamoServicio {
         }
 
     }
+    
+    public void comprobarQueSeaActivo(String id) throws ErrorServicio{
+        if (pR.getById(id).getAlta()== false) {
+               throw new ErrorServicio("Este préstamo ya está inactivo");
+            }
+    }
+    
     @Transactional
     public void baja(String id) {
         Optional<Prestamo> entidad = pR.findById(id);
@@ -121,5 +129,14 @@ public class PrestamoServicio {
             prestamo.setAlta(true);
             pR.save(prestamo);
         }
+    }
+    @Transactional
+    public void eliminar(String id) throws ErrorServicio{
+         Optional<Prestamo> entidad = pR.findById(id);
+         if(entidad.isPresent()){
+         pR.deleteById(id);
+        }else{
+             throw new ErrorServicio("Error al eliminar préstamo");
+         }
     }
 }

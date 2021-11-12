@@ -46,7 +46,7 @@
                 <a class="nav-link" th:href="@{/prestamos}">Préstamos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" th:href="@{@/clientes}">Clientes</a>
+                <a class="nav-link" th:href="@{/clientes}">Clientes</a>
               </li>
             
           </ul>
@@ -77,8 +77,9 @@
                     <th scope="col">Fecha de Devolución</th>
                     <th scope="col">Estado de Préstamo</th>
                     <th scope="col">Multa</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Acciones</th>
+                    <th scope="col">Activo</th>
+                    <th scope="col">Devoluciones</th>
+                    <th scope="col">Eliminar</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -93,18 +94,19 @@
                     <td th:text="${prestamo.multa}"></td>
                    
                     <td>
-                                    <span th:if="${prestamo.alta}">Alta</span>
-                                    <span th:unless="${prestamo.alta}">Baja</span>
+                                    <span th:if="${prestamo.alta}" style="color:green">Activo</span>
+                                    <span th:unless="${prestamo.alta}"style="color:red">Activo</span>
                     </td>
                               
                     <td>
                        
-                            <!--<a th:href="@{/prestamos/editar/{id}(id=${prestamo.id})}" class="btn btn-info" >Editar</a>-->
-                            <a th:href="@{/prestamos/baja/{id}(id=${prestamo.id})}" class="btn btn-danger" >Dar de Baja</a>
-                            <a th:href="@{/prestamos/alta/{id}(id=${prestamo.id})}" class="btn btn-success" >Dar de Alta</a>
-                            <!--<a th:href="@{/prestamos/eliminar/{id}(id=${prestamo.id})}" class="btn btn-warning" >Eliminar</a>-->
+                        <a th:href="@{/prestamos/formularioDevolucion/{id}(id=${prestamo.id})}" class="btn btn-info">Devolución</a>
+                           
                     </td>
-                   
+                    <td>
+                        <a th:href="@{/prestamos/eliminar/{id}(id=${prestamo.id})}" class="btn btn-warning" >Eliminar</a>
+                    </td>
+                        
                   </tr>
                   
                 </tbody>
