@@ -48,7 +48,7 @@
                 <a class="nav-link" th:href="@{/prestamos}">Préstamos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" th:href="@{@/clientes}">Clientes</a>
+                <a class="nav-link" th:href="@{/clientes}">Clientes</a>
               </li>
             
           </ul>
@@ -96,12 +96,18 @@
                     <td th:text="${prestamo.multa}"></td>
                    
                     <td>
+<<<<<<< HEAD
                                     <span th:if="${prestamo.alta}" style="color: green">Activo</span>
                                     <span th:unless="${prestamo.alta}" class="fa-circle" style="color: red">Activo</span>
+=======
+                                    <span th:if="${prestamo.alta}" style="color:green">Activo</span>
+                                    <span th:unless="${prestamo.alta}"style="color:red">Activo</span>
+>>>>>>> d2e9ebc92d67255f545206455e6ed982438daa68
                     </td>
                               
                     <td>
                        
+<<<<<<< HEAD
                         <a th:href="@{/prestamos/finalizacion/{id}(id=${prestamo.id})}" class="btn btn-neon2"style="display: flex; align-content: center; color: #286cff">Devolución</a>
                             
                             
@@ -109,6 +115,15 @@
                     <td>
                         <a th:href="@{/prestamos/eliminar/{id}(id=${prestamo.id})}" class="btn btn-neon" style="display: flex; align-content: center; color: white">Eliminar</a>
                     </td>
+=======
+                        <a th:href="@{/prestamos/formularioDevolucion/{id}(id=${prestamo.id})}" class="btn btn-info">Devolución</a>
+                           
+                    </td>
+                    <td>
+                        <a th:href="@{/prestamos/eliminar/{id}(id=${prestamo.id})}" class="btn btn-warning" >Eliminar</a>
+                    </td>
+                        
+>>>>>>> d2e9ebc92d67255f545206455e6ed982438daa68
                   </tr>
                   
                 </tbody>

@@ -66,6 +66,7 @@ public class PrestamoControlador {
         }
 
     }
+    
 
     @PostMapping("/prestamos/registro")
     public String guardarPrestamo(ModelMap modelo, @RequestParam String idCliente, @RequestParam String idLibro,
@@ -95,6 +96,7 @@ public class PrestamoControlador {
         }
     }
 
+
     @GetMapping("/prestamos/finalizacion/{id}")
     public String irAFinalizarPrestamo(ModelMap modelo, @PathVariable String id) throws ErrorServicio{
         try {
@@ -111,17 +113,53 @@ public class PrestamoControlador {
     }
     @PostMapping("/prestamos/finalizacionDePrestamo{id}")
     public String finalizarPrestamo(ModelMap modelo,@PathVariable String id,
-            @RequestParam String fechaDevolucion) throws ParseException {
+            @RequestParam String fechaDevolucion) throws ErrorServicio  {
         try {                       
             Date date = new SimpleDateFormat("yyyy-MM-dd").parse(fechaDevolucion);
             pS.devolucionLibroPrestamo(id, date);
             modelo.put("titulo", "Préstamo Concluído");
             modelo.put("descripcion", "¡Préstamo Teminado de Manera Exitosa!");
-
-            if (pS.obtenerPrestamoPorId(id).getMulta() > 0) {
+            
+            if(pS.obtenerPrestamoPorId(id).getMulta()> 0){
                 modelo.put("multa", "Recuerda cobrar la multa de $" + pS.obtenerPrestamoPorId(id).getMulta());
             }
+            return "prestamoaviso.html";
+        }catch(Exception e){
+            modelo.put("error", e.getMessage());
+            return "prestamo.html";
+          
+        }   
+        
+    }
 
+    @GetMapping("/prestamos/formularioDevolucion/{id}")
+    public String irAFormularioDevoluciones(@PathVariable String id, ModelMap modelo) throws ErrorServicio {
+        try {
+        modelo.addAttribute("prestamo", pS.obtenerPrestamoPorId(id));
+        pS.comprobarQueSeaActivo(id);
+        return "form_prestamoFinalizacion.html";
+        } catch (Exception e) {
+            modelo.put("titulo", "Préstamo INACTIVO");
+            modelo.put("descrip", "Este préstamo ya fue desactivado.");
+            return "prestamoexito.html";
+        }
+       
+        
+        
+    }
+
+    @PostMapping("/prestamos/formularioDeDevoluciones{id}")
+    public String finalizarPrestamos(ModelMap modelo, @PathVariable String id, @RequestParam String fechaDevolucion) throws ErrorServicio{
+        try {
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(fechaDevolucion);
+            pS.devolucionLibroPrestamo(id, date);
+            modelo.put("titulo", "Préstamo Concluído");
+            modelo.put("descripcion", "Se ha concluído este préstamo de manera exitosa");
+
+            if (pS.obtenerPrestamoPorId(id).getMulta() > 0) {
+                modelo.put("multa", "Debes cobrarle una multa de $" + pS.obtenerPrestamoPorId(id).getMulta());
+
+            }
             return "prestamoaviso.html";
         } catch (Exception ex) {
             modelo.put("error", ex.getMessage());
@@ -151,8 +189,7 @@ public class PrestamoControlador {
 //    }
     @GetMapping("prestamos/eliminar/{id}")
     public String eliminar(@PathVariable String id) {
-
-        try {
+        try{
             pS.eliminar(id);
             return "redirect:/prestamos/listar";
         } catch (Exception e) {
@@ -163,24 +200,34 @@ public class PrestamoControlador {
     public String baja(@PathVariable String id) {
 
         try {
-            pS.baja(id);
+            pS.eliminar(id);
             return "redirect:/prestamos/listar";
         } catch (Exception e) {
-            return "redirect:/";
-        }
-
-    }
-
-    @GetMapping("prestamos/alta/{id}")
-    public String alta(@PathVariable String id) {
-
-        try {
-            pS.alta(id);
             return "redirect:/prestamos/listar";
-        } catch (Exception e) {
-            return "redirect:/";
         }
-
     }
+//    @GetMapping("prestamos/baja/{id}")
+//    public String baja(@PathVariable String id) {
+//
+//        try {
+//            pS.baja(id);
+//            return "redirect:/prestamos/listar";
+//        } catch (Exception e) {
+//            return "redirect:/";
+//        }
+//
+//    }
+//
+//    @GetMapping("prestamos/alta/{id}")
+//    public String alta(@PathVariable String id) {
+//
+//        try {
+//            pS.alta(id);
+//            return "redirect:/prestamos/listar";
+//        } catch (Exception e) {
+//            return "redirect:/";
+//        }
+//
+//    }
 
 }

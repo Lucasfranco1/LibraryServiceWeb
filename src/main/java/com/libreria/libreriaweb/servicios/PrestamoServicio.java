@@ -113,6 +113,13 @@ public class PrestamoServicio {
         }
 
     }
+    
+    public void comprobarQueSeaActivo(String id) throws ErrorServicio{
+        if (pR.getById(id).getAlta()== false) {
+               throw new ErrorServicio("Este préstamo ya está inactivo");
+            }
+    }
+    
     @Transactional
     public void baja(String id) {
         Optional<Prestamo> entidad = pR.findById(id);
@@ -137,7 +144,7 @@ public class PrestamoServicio {
          if(entidad.isPresent()){
          pR.deleteById(id);
         }else{
-             throw new ErrorServicio("Error al eliminar autor");
+             throw new ErrorServicio("Error al eliminar autor");             
          }
     }
 }
